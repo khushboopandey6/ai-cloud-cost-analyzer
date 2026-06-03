@@ -1,23 +1,31 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from src.aws_cost import get_cost_data, process_data, get_monthly_totals
 from src.cost_prediction import predict_next_month_cost
 from src.ai_insights import generate_insights
+from src.chat import generate_chat_response
 
 app = FastAPI()
+
+
+class ChatRequest(BaseModel):
+    question: str
+
 
 @app.get("/")
 def home():
     return {"message": "API is running"}
 
+
 @app.get("/cost")
 def get_cost():
     response = get_cost_data()
     df = process_data(response)
-
     return {
         "total_cost": round(float(df["cost"].sum()), 2),
         "data": df.to_dict(orient="records")
     }
+
 
 @app.get("/ai-analysis")
 def ai_analysis():
@@ -36,3 +44,12 @@ def ai_analysis():
         "predicted_next_month_cost": predicted_cost,
         "insights": insights
     }
+
+
+@app.post("/chat")
+def chat(request: ChatRequest):
+    response = get_cost_data()
+    df = process_data(response)
+    cost_history = get_monthly_totals(df)
+    answer = generate_chat_response(request.question, cost_history, df)
+    return {"answer": answer}
