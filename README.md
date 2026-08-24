@@ -1,24 +1,49 @@
-# ai-cloud-cost-analyzer
+# ☁️ AI Cloud Cost Analyzer
 
-## 📌 Overview
-This project helps you understand and track your AWS cloud spending in a simple way. It connects to AWS Cost Explorer API, pulls real billing data, and turns it into useful insights like service-wise cost breakdown and future cost estimation.
+AI Cloud Cost Analyzer is a project I built to help understand and monitor AWS cloud spending.
 
-## ⚙️ What it does
-- Connects to AWS and fetches real cost data  
-- Breaks down spending by AWS services (EC2, S3, RDS, etc.)  
-- Gives a clear view of where your cloud money is going  
-- Uses basic ML to estimate future costs based on past usage  
-- Exposes data through a FastAPI backend  
+It provides an interactive dashboard where you can view AWS costs, analyze spending by service, see monthly cost trends, predict future costs, and get AI-powered recommendations for cost optimization.
+
+## 🚀 Live Dashboard
+
+Try the dashboard here:
+
+https://ai-cloud-cost-analyzer.streamlit.app/
+
+## ✨ Features
+
+- 📊 AWS cost dashboard
+- 📈 Monthly cost trend visualization
+- 🗂️ Cost breakdown by AWS service
+- 🔮 Next-month cost prediction
+- 🤖 AI-powered cost insights
+- 💬 AI chatbot for AWS cost questions
+- 🚀 FastAPI backend
+- 🐳 Dockerized backend
+- ☁️ AWS EC2 deployment
 
 ## 🛠️ Tech Stack
-- Python  
-- FastAPI  
-- Boto3 (AWS SDK)  
-- Pandas  
-- Scikit-learn (for prediction)  
 
-## 🚀 How to Run the Project
+- Python
+- FastAPI
+- Streamlit
+- Pandas
+- Scikit-learn
+- Boto3
+- Plotly
+- Groq
+- Docker
+- AWS EC2
+- GitHub Actions
 
-```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
+## 🏗️ Architecture
+
+Streamlit Dashboard
+        ↓
+FastAPI Backend
+        ↓
+AWS Cost Data
+        ↓
+AI Analysis & Prediction
+        ↓
+Groq AI Chatbot
